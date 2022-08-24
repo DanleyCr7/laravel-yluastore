@@ -17,10 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(ProdutoController::class)
-    ->prefix('produtos')
-    ->as('produtos.')
-    ->group(function () {
-        Route::get('detalhe', 'produtoDetalhado')->name('detalhe');
-    }
-);
+Route::get('/user', [ProdutoController::class, 'produtoDetalhado'])->name('produtos.detalhe');
+// Route::get('detalhe', 'produtoDetalhado', )->name('detalhe')
+
+
+// Route::controller(ProdutoController::class)
+//     ->prefix('produtos')
+//     ->as('produtos.')
+//     ->group(function () {
+//         Route::get('detalhe', 'produtoDetalhado')->name('detalhe');
+//     }
+// );

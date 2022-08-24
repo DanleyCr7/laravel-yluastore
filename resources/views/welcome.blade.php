@@ -1,7 +1,7 @@
 
 @extends('templates.template')
 @section('content')
-<body class="home-page home-01 ">
+<div class="home-page home-01 ">
 
 	<!-- mobile menu -->
     <div class="mercado-clone-wrap">
@@ -1461,4 +1461,5 @@
 			</div>
 		</div>
 	</footer>
+</div>
 @endsection  
