@@ -182,39 +182,16 @@
 						<div class="detail-media">
 							<div class="product-gallery">
 							  <ul class="slides">
+								@php
+									$categoria = $produto->subcategoria->categoria->descricao ?? '';
+									$subcategoria = $produto->subcategoria->descricao ?? '';
+								@endphp
 
-							    <li data-thumb="assets/images/products/digital_18.jpg">
-							    	<img src="assets/images/products/digital_18.jpg" alt="product thumbnail" />
-							    </li>
-
-							    <li data-thumb="assets/images/products/digital_17.jpg">
-							    	<img src="assets/images/products/digital_17.jpg" alt="product thumbnail" />
-							    </li>
-
-							    <li data-thumb="assets/images/products/digital_15.jpg">
-							    	<img src="assets/images/products/digital_15.jpg" alt="product thumbnail" />
-							    </li>
-
-							    <li data-thumb="assets/images/products/digital_02.jpg">
-							    	<img src="assets/images/products/digital_02.jpg" alt="product thumbnail" />
-							    </li>
-
-							    <li data-thumb="assets/images/products/digital_08.jpg">
-							    	<img src="assets/images/products/digital_08.jpg" alt="product thumbnail" />
-							    </li>
-
-							    <li data-thumb="assets/images/products/digital_10.jpg">
-							    	<img src="assets/images/products/digital_10.jpg" alt="product thumbnail" />
-							    </li>
-
-							    <li data-thumb="assets/images/products/digital_12.jpg">
-							    	<img src="assets/images/products/digital_12.jpg" alt="product thumbnail" />
-							    </li>
-
-							    <li data-thumb="assets/images/products/digital_14.jpg">
-							    	<img src="assets/images/products/digital_14.jpg" alt="product thumbnail" />
-							    </li>
-
+								@foreach ($produto->imagens as $imagem)
+									<li data-thumb="{{ $categoria . '/' . $subcategoria . '/' . $imagem->imagem }}">
+										<img width="350px" src="{{$categoria . '/' . $subcategoria . '/' . $imagem->imagem }}" alt="product thumbnail" />
+									</li>
+								@endforeach
 							  </ul>
 							</div>
 						</div>
@@ -227,18 +204,18 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <a href="#" class="count-review">(05 review)</a>
                             </div>
-                            <h2 class="product-name">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</h2>
+                            <h2 class="product-name">{{ $produto->nome ?? '[NÃO INFORMADO]' }}</h2>
                             <div class="short-desc">
                                 <ul>
-                                    <li>7,9-inch LED-backlit, 130Gb</li>
-                                    <li>Dual-core A7 with quad-core graphics</li>
-                                    <li>FaceTime HD Camera 7.0 MP Photos</li>
+									@foreach ($produto->especificacoes as $item)
+                                    	<li>{{ $item }}</li>
+									@endforeach
                                 </ul>
                             </div>
                             <div class="wrap-social">
                             	<a class="link-socail" href="#"><img src="assets/images/social-list.png" alt=""></a>
                             </div>
-                            <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                            <div class="wrap-price"><span class="product-price">$ {{ $produto->valor ?? '0.0' }}</span></div>
                             <div class="stock-info in-stock">
                                 <p class="availability">Availability: <b>In Stock</b></p>
                             </div>
@@ -267,9 +244,7 @@
 							</div>
 							<div class="tab-contents">
 								<div class="tab-content-item active" id="description">
-									<p>Lorem ipsum dolor sit amet, an munere tibique consequat mel, congue albucius no qui, a t everti meliore erroribus sea. ro cum. Sea ne accusata voluptatibus. Ne cum falli dolor voluptua, duo ei sonet choro facilisis, labores officiis torquatos cum ei.</p>
-									<p>Cum altera mandamus in, mea verear disputationi et. Vel regione discere ut, legere expetenda ut eos. In nam nibh invenire similique. Atqui mollis ea his, ius graecis accommodare te. No eam tota nostrum eque. Est cu nibh clita. Sed an nominavi, et stituto, duo id rebum lucilius. Te eam iisque deseruisse, ipsum euismod his at. Eu putent habemus voluptua sit, sit cu rationibus scripserit, modus taria . </p>
-									<p>experian soleat maluisset per. Has eu idque similique, et blandit scriptorem tatibus mea. Vis quaeque ocurreret ea.cu bus  scripserit, modus voluptaria ex per.</p>
+									<p>{{$produto->descricao ?? '[NÃO INFORMADO]'}}</p>
 								</div>
 								<div class="tab-content-item " id="add_infomation">
 									<table class="shop_attributes">

@@ -27,4 +27,14 @@ class Produto extends Model
     protected $casts = [
         "especificacoes" => "array"
     ];
+
+    public function imagens()
+    {
+        return $this->hasMany(Imagem::class);
+    }
+
+    public function subcategoria()
+    {
+      return $this->belongsTo(SubCategoria::class, 'subcategoria_id');
+    }
 }

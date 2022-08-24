@@ -9,7 +9,7 @@ class SubCategoria extends Model
 {
     use HasFactory;
 
-    protected $table = "produtos";
+    protected $table = "subcategorias";
 
     protected $guarded = array("id");
 
@@ -17,4 +17,9 @@ class SubCategoria extends Model
         'categoria_id',
         'descricao',
     ];
+
+    public function categoria()
+    {
+      return $this->belongsTo(Categoria::class);
+    }
 }
