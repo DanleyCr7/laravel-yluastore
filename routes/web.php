@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,7 @@ use App\Http\Controllers\ProdutoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/user', [ProdutoController::class, 'produtoDetalhado'])->name('produtos.detalhe');
 // Route::get('detalhe', 'produtoDetalhado', )->name('detalhe')

@@ -10,11 +10,15 @@ class ProdutoController extends Controller
 {
     public function produtoDetalhado()
     {
-        $produto = Produto::with([
-            'imagens',
-            'subcategoria.categoria'
-        ])->first();
-
-        return view('produtos.detail', compact('produto'));
+        try {
+            $produto = Produto::with([
+                'imagens',
+                'subcategoria.categoria'
+            ])->first();
+    
+            return view('produtos.detail', compact('produto'));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }
