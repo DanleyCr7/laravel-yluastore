@@ -326,7 +326,7 @@
 													</div>
 												</div>
 												<div class="product-info">
-													<a href="#" class="product-name"><span>Lois Caron LCS-4027 Analog Watch - For Men</span></a>
+													<a href="#" class="product-name"><span>{{ $produto->nome ?? '' }}</span></a>
 													<div class="wrap-price"><span class="product-price">$250.00</span></div>
 												</div>
 											</div>

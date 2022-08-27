@@ -28,12 +28,12 @@
 								<li class="menu-item" ><a title="Register or Login" href="login.html">Login</a></li>
 								<li class="menu-item" ><a title="Register or Login" href="register.html">Register</a></li>
 								<li class="menu-item lang-menu menu-item-has-children parent">
-									<a title="English" href="#"><span class="img label-before"><img src="assets/images/lang-en.png" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									<a title="English" href="#"><span class="img label-before"><img src="/assets/images/lang-en.png" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu lang" >
-										<li class="menu-item" ><a title="hungary" href="#"><span class="img label-before"><img src="assets/images/lang-hun.png" alt="lang-hun"></span>Hungary</a></li>
-										<li class="menu-item" ><a title="german" href="#"><span class="img label-before"><img src="assets/images/lang-ger.png" alt="lang-ger" ></span>German</a></li>
-										<li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="assets/images/lang-fra.png" alt="lang-fre"></span>French</a></li>
-										<li class="menu-item" ><a title="canada" href="#"><span class="img label-before"><img src="assets/images/lang-can.png" alt="lang-can"></span>Canada</a></li>
+										<li class="menu-item" ><a title="hungary" href="#"><span class="img label-before"><img src="/assets/images/lang-hun.png" alt="lang-hun"></span>Hungary</a></li>
+										<li class="menu-item" ><a title="german" href="#"><span class="img label-before"><img src="/assets/images/lang-ger.png" alt="lang-ger" ></span>German</a></li>
+										<li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="/assets/images/lang-fra.png" alt="lang-fre"></span>French</a></li>
+										<li class="menu-item" ><a title="canada" href="#"><span class="img label-before"><img src="/assets/images/lang-can.png" alt="lang-can"></span>Canada</a></li>
 									</ul>
 								</li>
 								<li class="menu-item menu-item-has-children parent" >
@@ -59,7 +59,7 @@
 					<div class="mid-section main-info-area">
 
 						<div class="wrap-logo-top left-section">
-							<a href="{{ route('index') }}" class="link-to-home"><img src="assets/images/logo-top-1.png" alt="mercado"></a>
+							<a href="{{ route('index') }}" class="link-to-home"><img src="/assets/images/logo-top-1.png" alt="logo"></a>
 						</div>
 
 						<div class="wrap-search center-section">
@@ -216,7 +216,7 @@
                                 </ul>
                             </div>
                             <div class="wrap-social">
-                            	<a class="link-socail" href="#"><img src="assets/images/social-list.png" alt=""></a>
+                            	<a class="link-socail" href="#"><img src="/assets/images/social-list.png" alt=""></a>
                             </div>
                             <div class="wrap-price"><span class="product-price">$ {{ $produto->valor ?? '0.0' }}</span></div>
                             <div class="stock-info in-stock">
@@ -273,7 +273,7 @@
 											<ol class="commentlist">
 												<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
 													<div id="comment-20" class="comment_container"> 
-														<img alt="" src="assets/images/author-avata.jpg" height="80" width="80">
+														<img alt="" src="/assets/images/author-avata.jpg" height="80" width="80">
 														<div class="comment-text">
 															<div class="star-rating">
 																<span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
@@ -394,7 +394,7 @@
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
 											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_01.jpg" alt=""></figure>
+												<figure><img src="/assets/images/products/digital_01.jpg" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
@@ -408,7 +408,7 @@
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
 											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_17.jpg" alt=""></figure>
+												<figure><img src="/assets/images/products/digital_17.jpg" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
@@ -422,7 +422,7 @@
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
 											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_18.jpg" alt=""></figure>
+												<figure><img src="/assets/images/products/digital_18.jpg" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
@@ -436,7 +436,7 @@
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
 											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_20.jpg" alt=""></figure>
+												<figure><img src="/assets/images/products/digital_20.jpg" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
@@ -461,7 +461,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item new-label">new</span>
@@ -479,7 +479,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_17.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_17.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item sale-label">sale</span>
@@ -497,7 +497,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_15.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_15.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item new-label">new</span>
@@ -516,7 +516,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_01.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_01.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item bestseller-label">Bestseller</span>
@@ -534,7 +534,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_21.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_21.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="wrap-btn">
 											<a href="#" class="function-link">quick view</a>
@@ -549,7 +549,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_03.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_03.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item sale-label">sale</span>
@@ -567,7 +567,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item new-label">new</span>
@@ -585,7 +585,7 @@
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="assets/images/products/digital_05.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+											<figure><img src="/assets/images/products/digital_05.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item bestseller-label">Bestseller</span>
@@ -754,7 +754,7 @@
 	                            <h3 class="item-header">We Using Safe Payments:</h3>
 	                            <div class="item-content">
 	                                <div class="wrap-list-item wrap-gallery">
-										<img src="assets/images/payment.png" style="max-width: 260px;">
+										<img src="/assets/images/payment.png" style="max-width: 260px;">
 									</div>
 	                            </div>
 	                        </div>
@@ -783,8 +783,8 @@
 	                            <div class="item-content">
 	                                <div class="wrap-list-item apps-list">
 	                                    <ul>
-	                                        <li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
-	                                        <li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
+	                                        <li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="/assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
+	                                        <li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="/assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
 	                                    </ul>
 	                                </div>
 	                            </div>

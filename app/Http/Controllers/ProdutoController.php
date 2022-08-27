@@ -14,7 +14,7 @@ class ProdutoController extends Controller
             $produto = Produto::with([
                 'imagens',
                 'subcategoria.categoria'
-            ])->where('id', 1)->first();
+            ])->where('id', $id)->first();
     
             return view('produtos.detail', compact('produto'));
         } catch (\Throwable $th) {
