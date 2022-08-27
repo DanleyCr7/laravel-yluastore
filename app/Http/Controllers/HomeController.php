@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Categoria;
+use App\Models\SubCategoria;
 
 class HomeController extends Controller
 {
@@ -14,13 +14,17 @@ class HomeController extends Controller
             $slides = collect([]);
             $disponiveis = collect(['', '', '', '', '', '', '', '', '',]);
             $promocoes = collect(['', '', '', '', '', '', '', '', '',]);
-            $categorias = Categoria::with([
-                'subcategorias'
+            $subcategorias = SubCategoria::with([
+                'produtos',
+                'produtos.imagens',
             ])
+            ->whereHas('produtos', function($query){
+                return $query != null;
+            })
             ->whereNull('deleted_at')
             ->get();
             
-            return view('welcome', compact('disponiveis', 'promocoes', 'categorias'));
+            return view('welcome', compact('disponiveis', 'promocoes', 'subcategorias'));
         } catch (\Throwable $th) {
             //throw $th;
         }

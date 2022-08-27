@@ -175,7 +175,7 @@
 			<div class="wrap-main-slide">
 				<div class="slide-carousel owl-carousel style-nav-1" data-items="1" data-loop="1" data-nav="true" data-dots="false">
 					<div class="item-slide">
-						<img src="slides/main-slider-1-1.jpeg" alt="" class="img-slide">
+						<img src="imagens/slides/main-slider-1-1.jpeg" alt="" class="img-slide">
 						<div class="slide-info slide-1">
 							<h2 class="f-title"><b>Moda</b> Feminina</h2>
 							<span class="subtitle">Compre todos seus produtos no conforto de sua casa.</span>
@@ -184,7 +184,7 @@
 						</div>
 					</div>
 					<div class="item-slide">
-						<img src="slides/main-slider-1-2.jpg" alt="" class="img-slide">
+						<img src="imagens/slides/main-slider-1-2.jpg" alt="" class="img-slide">
 						<div class="slide-info slide-2">
 							<h2 class="f-title">Extra 25% Off</h2>
 							<span class="f-subtitle">On online payments</span>
@@ -193,7 +193,7 @@
 						</div>
 					</div>
 					<div class="item-slide">
-						<img src="slides/main-slider-1-3.jpg" alt="" class="img-slide">
+						<img src="imagens/slides/main-slider-1-3.jpg" alt="" class="img-slide">
 						<div class="slide-info slide-3">
 							<h2 class="f-title">Great Range of <b>Exclusive Furniture Packages</b></h2>
 							<span class="f-subtitle">Exclusive Furniture Packages to Suit every need.</span>
@@ -298,19 +298,25 @@
 				<div class="wrap-products">
 					<div class="wrap-product-tab tab-style-1">
 						<div class="tab-control">
-							@foreach ($categorias as $key => $categoria)
-								<a href="{{ '#fashion_'. $key .'a'  }}" class="{{ $key == 0 ? 'tab-control-item active' : 'tab-control-item'}}">{{ ucfirst($categoria->descricao ?? '- - -') }}</a>
+							@foreach ($subcategorias as $key => $subcategoria)
+								<a href="{{ '#fashion_'. $key .'a'  }}" class="{{ $key == 0 ? 'tab-control-item active' : 'tab-control-item'}}">{{ ucfirst($subcategoria->descricao ?? '- - -') }}</a>
 							@endforeach
 						</div>
 						<div class="tab-contents">
-							@foreach ($categorias as $key => $categoria)
+							@foreach ($subcategorias as $key => $subcategoria)
+								@php
+								 	$path = '/' . 'imagens/' . (!empty($subcategoria->path) ? ($subcategoria->path . '/') : '/');
+								@endphp
 								<div class="{{ $key == 0 ? 'tab-content-item active' : 'tab-content-item'}}" id="{{ 'fashion_'. $key .'a'  }}">
 									<div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}' >
-										@foreach ($categoria->subcategorias as $count => $categoria)
+										@foreach ($subcategoria->produtos as $count => $produto)
 											<div class="product product-style-2 equal-elem ">
+												@php
+													$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.png';
+												@endphp
 												<div class="product-thumnail">
-													<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-														<figure><img src="assets/images/products/fashion_01.jpg" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+													<a href="{{ route('produtos.detalhe', [ $produto->id ]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+														<figure><img src="{{ $path . $imagemFirst }}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 													</a>
 													<div class="group-flash">
 														<span class="flash-item new-label">new</span>

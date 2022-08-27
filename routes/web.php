@@ -17,7 +17,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/user', [ProdutoController::class, 'produtoDetalhado'])->name('produtos.detalhe');
+Route::get('/detalhe/{id?}', [ProdutoController::class, 'produtoDetalhado'])->name('produtos.detalhe');
 // Route::get('detalhe', 'produtoDetalhado', )->name('detalhe')
 
 

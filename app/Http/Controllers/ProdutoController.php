@@ -8,17 +8,14 @@ use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
-    public function produtoDetalhado()
+    public function produtoDetalhado($id = null)
     {
-        try {
             $produto = Produto::with([
                 'imagens',
                 'subcategoria.categoria'
-            ])->first();
+            ])->find($id);
     
             return view('produtos.detail', compact('produto'));
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+      
     }
 }
