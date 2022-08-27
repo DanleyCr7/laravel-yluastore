@@ -14,7 +14,12 @@ class HomeController extends Controller
             $slides = collect([]);
             $disponiveis = collect(['', '', '', '', '', '', '', '', '',]);
             $promocoes = collect(['', '', '', '', '', '', '', '', '',]);
-            $categorias = Categoria::all();
+            $categorias = Categoria::with([
+                'subcategorias'
+            ])
+            ->whereNull('deleted_at')
+            ->get();
+            
             return view('welcome', compact('disponiveis', 'promocoes', 'categorias'));
         } catch (\Throwable $th) {
             //throw $th;
