@@ -315,7 +315,7 @@
 													$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.png';
 												@endphp
 												<div class="product-thumnail">
-													<a href="{{ route('produtos.detalhe', [ $produto->id ]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+													<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
 														<figure><img src="{{ $path . $imagemFirst }}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 													</a>
 													<div class="group-flash">

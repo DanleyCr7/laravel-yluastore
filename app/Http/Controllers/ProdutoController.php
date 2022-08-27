@@ -10,12 +10,15 @@ class ProdutoController extends Controller
 {
     public function produtoDetalhado($id = null)
     {
+        try {
             $produto = Produto::with([
                 'imagens',
                 'subcategoria.categoria'
-            ])->find($id);
+            ])->where('id', 1)->first();
     
             return view('produtos.detail', compact('produto'));
-      
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }
