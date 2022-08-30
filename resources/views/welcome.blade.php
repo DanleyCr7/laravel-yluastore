@@ -223,11 +223,15 @@
 				<h3 class="title-box">Disponíveis</h3>
 				<div class="wrap-countdown mercado-countdown" data-expire="2020/12/12 12:34:56"></div>
 				<div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}'>
-					@foreach ($promocoes as $promocao)
+					@foreach ($produtosDisponiveis as $produto)
 						<div class="product product-style-2 equal-elem ">
+							@php
+								$path = '/' . 'imagens/' . (!empty($produto->subcategoria->path) ? ($produto->subcategoria->path . '/') : '/');
+								$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.jpg';
+							@endphp
 							<div class="product-thumnail">
-								<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-									<figure><img src="assets/images/products/tools_equipment_7.jpg" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+								<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+									<figure><img src="{{ $path . $imagemFirst }}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 								</a>
 								<div class="group-flash">
 									<span class="flash-item sale-label">sale</span>
@@ -247,7 +251,7 @@
 
 			<!--Latest Products-->
 			<div class="wrap-show-advance-info-box style-1">
-				<h3 class="title-box">Latest Products</h3>
+				<h3 class="title-box">Produto recentes</h3>
 				<div class="wrap-top-banner">
 					<a href="#" class="link-banner banner-effect-2">
 						<figure><img src="assets/images/digital-electronic-banner.jpg" width="1170" height="240" alt=""></figure>
@@ -258,16 +262,28 @@
 						<div class="tab-contents">
 							<div class="tab-content-item active" id="digital_1a">
 								<div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}' >
-									@foreach ($disponiveis as $produto)
+									@foreach ($produtosRecentes as $produto)
+										@php
+											$path = '/' . 'imagens/' . (!empty($produto->subcategoria->path) ? ($produto->subcategoria->path . '/') : '/');
+											$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.jpg';
+										@endphp
 										<div class="product product-style-2 equal-elem ">
 											<div class="product-thumnail">
-												<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-													<figure><img src="assets/images/products/digital_15.jpg" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+												<a href="{{ route('produtos.detalhe',  ['id' => $produto->id]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+													<figure><img src="{{ $path . $imagemFirst }}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
 												</a>
 												<div class="group-flash">
-													<span class="flash-item new-label">Novo</span>
-													<span class="flash-item sale-label">Disponível</span>
-													<span class="flash-item bestseller-label">Mais vendidos</span>
+													@if ($produto->novo == 1)
+														<span class="flash-item new-label">Novo</span>
+													@endif
+													@if ($produto->quantidade > 0)
+														<span class="flash-item sale-label">Disponível</span>
+													@else
+														<span class="flash-item sale-label">Sem estoque</span>
+													@endif
+													@if ($produto->novo == 1)
+														<span class="flash-item bestseller-label">Mais vendidos</span>
+													@endif
 												</div>
 												<div class="wrap-btn">
 													<a href="#" class="function-link">quick view</a>
@@ -312,7 +328,7 @@
 										@foreach ($subcategoria->produtos as $count => $produto)
 											<div class="product product-style-2 equal-elem ">
 												@php
-													$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.png';
+													$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.jpg';
 												@endphp
 												<div class="product-thumnail">
 													<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">

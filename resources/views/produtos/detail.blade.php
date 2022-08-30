@@ -1,6 +1,6 @@
 @extends('templates.template')
 @section('content')
-<body class="detail page">
+<div class="detail page">
 	<!-- mobile menu -->
     <div class="mercado-clone-wrap">
         <div class="mercado-panels-actions-wrap">
@@ -867,5 +867,7 @@
 	    </div>
 	</footer>
 	<!--footer area-->
-</body>
+</div>
 @endsection  
+
+

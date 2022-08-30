@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="/assets/css/chosen.min.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/color-01.css">
+
     {{-- detail --}}
 	<link rel="stylesheet" type="text/css" href="/assets/css/flexslider.css">
     	
@@ -26,7 +27,9 @@
 	<script src="/assets/js/jquery.countdown.min.js"></script>
 	<script src="/assets/js/jquery.sticky.js"></script>
 	<script src="/assets/js/functions.js"></script>
-    
+
 </head>
-    @yield('content')
+	<body>
+		@yield('content')
+	</body>
 </html>

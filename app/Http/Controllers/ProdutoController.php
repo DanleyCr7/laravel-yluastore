@@ -15,8 +15,16 @@ class ProdutoController extends Controller
                 'imagens',
                 'subcategoria.categoria'
             ])->where('id', $id)->first();
+
+            $produtosRelacionados = Produto::with([
+                'subcategoria'
+            ])
+            ->where('subcategoria_id',  $produto->subcategoria_id)
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
     
-            return view('produtos.detail', compact('produto'));
+            return view('produtos.detail', compact('produto', 'produtosRelacionados'));
         } catch (\Throwable $th) {
             //throw $th;
         }
