@@ -1,6 +1,23 @@
-@extends('templates.template')
-@section('content')
-<div class="detail page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Detail</title>
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/assets/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/flexslider.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/chosen.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/color-01.css">
+</head>
+<body class=" detail page ">
 	<!-- mobile menu -->
     <div class="mercado-clone-wrap">
         <div class="mercado-panels-actions-wrap">
@@ -346,105 +363,29 @@
 				</div><!--end main products area-->
 
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
-					<div class="widget widget-our-services ">
-						<div class="widget-content">
-							<ul class="our-services">
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-truck" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Free Shipping</b>
-											<span class="subtitle">On Oder Over $99</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-gift" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Special Offer</b>
-											<span class="subtitle">Get a gift!</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-reply" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Order Return</b>
-											<span class="subtitle">Return within 7 days</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div><!-- Categories widget-->
-
 					<div class="widget mercado-widget widget-product">
 						<h2 class="widget-title">Popular Products</h2>
 						<div class="widget-content">
 							<ul class="products">
+								@foreach ($produtosPopulares as $produto)
+								@php
+									$path = '/' . 'imagens/' . (!empty($produto->subcategoria->path) ? ($produto->subcategoria->path . '/') : '/');
+									$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.jpg';
+								@endphp
 								<li class="product-item">
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
-											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="/assets/images/products/digital_01.jpg" alt=""></figure>
+											<a href="{{ route('produtos.detalhe') }}" title="{{ $produto->nome ?? '[NÃO INFORMADO]' }}">
+												<figure><img src="{{ $path . $imagemFirst }}" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
+											<a href="#" class="product-name"><span>{{ $produto->nome ?? '[NÃO INFORMADO]' }}</span></a>
+											<div class="wrap-price"><span class="product-price">R${{ !empty($produto->valor) ? ('R$' . $produto->valor) : 'R$' }}</span></div>
 										</div>
 									</div>
 								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="/assets/images/products/digital_17.jpg" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="/assets/images/products/digital_18.jpg" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="{{ route('produtos.detalhe') }}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="/assets/images/products/digital_20.jpg" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
+								@endforeach
 
 							</ul>
 						</div>
@@ -454,14 +395,18 @@
 
 				<div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="wrap-show-advance-info-box style-1 box-in-site">
-						<h3 class="title-box">Related Products</h3>
+						<h3 class="title-box">Produtos relacionados</h3>
 						<div class="wrap-products">
 							<div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
-
+								@foreach ($produtosRelacionados as $produto)
+								@php
+									$path = '/' . 'imagens/' . (!empty($produto->subcategoria->path) ? ($produto->subcategoria->path . '/') : '/');
+									$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.jpg';
+								@endphp
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" title="{{ $produto->nome ?? '[NÃO INFORMADO]' }}">
+											<figure><img src="{{ $path . $imagemFirst }}" width="214" height="214" alt="{{ $produto->nome ?? '[NÃO INFORMADO]' }}"></figure>
 										</a>
 										<div class="group-flash">
 											<span class="flash-item new-label">new</span>
@@ -471,137 +416,14 @@
 										</div>
 									</div>
 									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
+										<a href="#" class="product-name"><span>{{ $produto->nome ?? '[NÃO INFORMADO]' }}</span></a>
+										<div class="wrap-price"><span class="product-price">R${{ !empty($produto->valor) ? $produto->valor : '- - -' }}</span></div>
 									</div>
 								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_17.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item sale-label">sale</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_15.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item new-label">new</span>
-											<span class="flash-item sale-label">sale</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_01.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item bestseller-label">Bestseller</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_21.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_03.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item sale-label">sale</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item new-label">new</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ route('produtos.detalhe') }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="/assets/images/products/digital_05.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item bestseller-label">Bestseller</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
+								@endforeach
 							</div>
 						</div><!--End wrap-products-->
+						
 					</div>
 				</div>
 
@@ -868,6 +690,17 @@
 	</footer>
 	<!--footer area-->
 </div>
-@endsection  
+<script src="/assets/js/jquery-1.12.4.minb8ff.js?ver=1.12.4"></script>
+<script src="/assets/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.flexslider.js"></script>
+<script src="/assets/js/chosen.jquery.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/jquery.countdown.min.js"></script>
+<script src="/assets/js/jquery.sticky.js"></script>
+<script src="/assets/js/functions.js"></script>
+<!--footer area-->
+</body>
+</html>
 
 
