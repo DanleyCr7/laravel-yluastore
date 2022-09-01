@@ -21,7 +21,8 @@ class Produto extends Model
         'nome',
         'especificacoes',
         'descricao',
-        'valor'
+        'valor',
+        'visualizados'
     ];
 
     protected $casts = [

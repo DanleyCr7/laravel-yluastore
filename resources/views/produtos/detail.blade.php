@@ -364,7 +364,7 @@
 
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
 					<div class="widget mercado-widget widget-product">
-						<h2 class="widget-title">Popular Products</h2>
+						<h2 class="widget-title">Produtos Populares</h2>
 						<div class="widget-content">
 							<ul class="products">
 								@foreach ($produtosPopulares as $produto)
@@ -375,12 +375,12 @@
 								<li class="product-item">
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
-											<a href="{{ route('produtos.detalhe') }}" title="{{ $produto->nome ?? '[NÃO INFORMADO]' }}">
+											<a href="{{ route('produtos.detalhe', [ 'id'=> $produto->id]) }}" title="{{ $produto->nome ?? '[NÃO INFORMADO]' }}">
 												<figure><img src="{{ $path . $imagemFirst }}" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
-											<a href="#" class="product-name"><span>{{ $produto->nome ?? '[NÃO INFORMADO]' }}</span></a>
+											<a href="{{ route('produtos.detalhe', [ 'id'=> $produto->id]) }}" class="product-name"><span> {{ $produto->nome ?? '[NÃO INFORMADO]' }}</span></a>
 											<div class="wrap-price"><span class="product-price">R${{ !empty($produto->valor) ? ('R$' . $produto->valor) : 'R$' }}</span></div>
 										</div>
 									</div>
@@ -444,32 +444,32 @@
 	                    <li class="fc-info-item">
 	                        <i class="fa fa-truck" aria-hidden="true"></i>
 	                        <div class="wrap-left-info">
-	                            <h4 class="fc-name">Free Shipping</h4>
-	                            <p class="fc-desc">Free On Oder Over $99</p>
+	                            <h4 class="fc-name">Taxa de entrega</h4>
+	                            <p class="fc-desc">5 REAIS</p>
 	                        </div>
 
 	                    </li>
 	                    <li class="fc-info-item">
 	                        <i class="fa fa-recycle" aria-hidden="true"></i>
 	                        <div class="wrap-left-info">
-	                            <h4 class="fc-name">Guarantee</h4>
-	                            <p class="fc-desc">30 Days Money Back</p>
+	                            <h4 class="fc-name">Garantia</h4>
+	                            <p class="fc-desc">Até 3 dias e está com a etiqueta</p>
 	                        </div>
 
 	                    </li>
 	                    <li class="fc-info-item">
 	                        <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
 	                        <div class="wrap-left-info">
-	                            <h4 class="fc-name">Safe Payment</h4>
-	                            <p class="fc-desc">Safe your online payment</p>
+	                            <h4 class="fc-name">Formas de pagamento</h4>
+	                            <p class="fc-desc">Cartão, pix, dinheiro em espécie.</p>
 	                        </div>
 
 	                    </li>
 	                    <li class="fc-info-item">
-	                        <i class="fa fa-life-ring" aria-hidden="true"></i>
+	                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
 	                        <div class="wrap-left-info">
-	                            <h4 class="fc-name">Online Suport</h4>
-	                            <p class="fc-desc">We Have Support 24/7</p>
+	                            <h4 class="fc-name">Whatsapp</h4>
+	                            <p class="fc-desc">86 99919-1751</p>
 	                        </div>
 
 	                    </li>
@@ -486,22 +486,22 @@
 
 	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 	                        <div class="wrap-footer-item">
-	                            <h3 class="item-header">Contact Details</h3>
+	                            <h3 class="item-header">Contatos</h3>
 	                            <div class="item-content">
 	                                <div class="wrap-contact-detail">
 	                                    <ul>
 	                                        <li>
 	                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-	                                            <p class="contact-txt">45 Grand Central Terminal New York,NY 1017 United State USA</p>
+	                                            <p class="contact-txt">Rua Antônio Tomaz da Costa Parnaíba-PI, Bairro joão 23, casa 195.</p>
 	                                        </li>
 	                                        <li>
 	                                            <i class="fa fa-phone" aria-hidden="true"></i>
-	                                            <p class="contact-txt">(+123) 456 789 - (+123) 666 888</p>
+	                                            <p class="contact-txt">(+55) 86 9533-0359</p>
 	                                        </li>
-	                                        <li>
+	                                        {{-- <li>
 	                                            <i class="fa fa-envelope" aria-hidden="true"></i>
 	                                            <p class="contact-txt">Contact@yourcompany.com</p>
-	                                        </li>	                                        
+	                                        </li>	                                         --}}
 	                                    </ul>
 	                                </div>
 	                            </div>
@@ -511,16 +511,16 @@
 	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 
 	                        <div class="wrap-footer-item">
-	                            <h3 class="item-header">Hot Line</h3>
+	                            <h3 class="item-header">Linha de contatos</h3>
 	                            <div class="item-content">
 	                                <div class="wrap-hotline-footer">
-	                                    <span class="desc">Call Us toll Free</span>
-	                                    <b class="phone-number">(+123) 456 789 - (+123) 666 888</b>
+	                                    <span class="desc">Telefone para ligação</span>
+	                                    <b class="phone-number">(+55)86 9533-0359</b>
 	                                </div>
 	                            </div>
 	                        </div>
 
-	                        <div class="wrap-footer-item footer-item-second">
+	                        {{-- <div class="wrap-footer-item footer-item-second">
 	                            <h3 class="item-header">Sign up for newsletter</h3>
 	                            <div class="item-content">
 	                                <div class="wrap-newletter-footer">
@@ -530,36 +530,29 @@
 	                                    </form>
 	                                </div>
 	                            </div>
-	                        </div>
+	                        </div> --}}
 
 	                    </div>
 
 	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 box-twin-content ">
 	                        <div class="row">
 	                            <div class="wrap-footer-item twin-item">
-	                                <h3 class="item-header">My Account</h3>
+	                                <h3 class="item-header">Minha conta</h3>
 	                                <div class="item-content">
 	                                    <div class="wrap-vertical-nav">
 	                                        <ul>
-	                                            <li class="menu-item"><a href="#" class="link-term">My Account</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Brands</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Gift Certificates</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Affiliates</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Wish list</a></li>
+	                                            <li class="menu-item"><a href="#" class="link-term">Perfil</a></li>
+	                                            <li class="menu-item"><a href="#" class="link-term">Lista de comprar</a></li>
 	                                        </ul>
 	                                    </div>
 	                                </div>
 	                            </div>
 	                            <div class="wrap-footer-item twin-item">
-	                                <h3 class="item-header">Infomation</h3>
+	                                <h3 class="item-header">Informações</h3>
 	                                <div class="item-content">
 	                                    <div class="wrap-vertical-nav">
 	                                        <ul>
-	                                            <li class="menu-item"><a href="#" class="link-term">Contact Us</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Returns</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Site Map</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Specials</a></li>
-	                                            <li class="menu-item"><a href="#" class="link-term">Order History</a></li>
+	                                            <li class="menu-item"><a href="#" class="link-term">Contate-nos</a></li>
 	                                        </ul>
 	                                    </div>
 	                                </div>
@@ -569,11 +562,11 @@
 
 	                </div>
 
-	                <div class="row">
+	                {{-- <div class="row">
 
 	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 	                        <div class="wrap-footer-item">
-	                            <h3 class="item-header">We Using Safe Payments:</h3>
+	                            <h3 class="item-header">USAMOS PAGAMENTOS SEGUROS:</h3>
 	                            <div class="item-content">
 	                                <div class="wrap-list-item wrap-gallery">
 										<img src="/assets/images/payment.png" style="max-width: 260px;">
@@ -611,57 +604,25 @@
 	                                </div>
 	                            </div>
 	                        </div>
-	                    </div>
+	                    </div> --}}
 
-	                </div>
+	                {{-- </div> --}}
 	            </div>
 
 	            <div class="wrap-back-link">
 	                <div class="container">
 	                    <div class="back-link-box">
-	                        <h3 class="backlink-title">Quick Links</h3>
+	                        <h3 class="backlink-title">Links rápidos</h3>
+							@foreach ($categorias as $categoria)
 	                        <div class="back-link-row">
-	                            <ul class="list-back-link" >
-	                                <li><span class="row-title">Mobiles:</span></li>
-	                                <li><a href="#" class="redirect-back-link" title="mobile">Mobiles</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="yphones">YPhones</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Gianee Mobiles GL">Gianee Mobiles GL</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Mobiles Karbonn">Mobiles Karbonn</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Mobiles Viva">Mobiles Viva</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Mobiles Intex">Mobiles Intex</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Mobiles Micrumex">Mobiles Micrumex</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Mobiles Bsus">Mobiles Bsus</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Mobiles Samsyng">Mobiles Samsyng</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Mobiles Lenova">Mobiles Lenova</a></li>
-	                            </ul>
-
-	                            <ul class="list-back-link" >
-	                                <li><span class="row-title">Tablets:</span></li>
-	                                <li><a href="#" class="redirect-back-link" title="Plesc YPads">Plesc YPads</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Samsyng Tablets" >Samsyng Tablets</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Qindows Tablets" >Qindows Tablets</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Calling Tablets" >Calling Tablets</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Micrumex Tablets" >Micrumex Tablets</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Lenova Tablets Bsus" >Lenova Tablets Bsus</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Tablets iBall" >Tablets iBall</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Tablets Swipe" >Tablets Swipe</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Tablets TVs, Audio" >Tablets TVs, Audio</a></li>
-	                            </ul>
-
-	                            <ul class="list-back-link" >
-	                                <li><span class="row-title">Fashion:</span></li>
-	                                <li><a href="#" class="redirect-back-link" title="Sarees Silk" >Sarees Silk</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="sarees Salwar" >sarees Salwar</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Suits Lehengas" >Suits Lehengas</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Biba Jewellery" >Biba Jewellery</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Rings Earrings" >Rings Earrings</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Diamond Rings" >Diamond Rings</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Loose Diamond Shoes" >Loose Diamond Shoes</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="BootsMen Watches" >BootsMen Watches</a></li>
-	                                <li><a href="#" class="redirect-back-link" title="Women Watches" >Women Watches</a></li>
-	                            </ul>
-
-	                        </div>
+									<ul class="list-back-link" >
+										<li><span class="row-title">{{ $categoria->descricao ?? '[NÃO INFORMAO]' }}:</span></li>
+										@foreach ($categoria->subcategorias as $subcategoria)
+											<li><a href="#" class="redirect-back-link" title="mobile">{{ $subcategoria->descricao ?? '[NÃO INFORMADO]' }}</a></li>
+										@endforeach
+									</ul>
+								</div>
+								@endforeach
 	                    </div>
 	                </div>
 	            </div>

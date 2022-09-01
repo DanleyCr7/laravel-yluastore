@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Produto;
+use App\Models\Categoria;
 
 class ProdutoController extends Controller
 {
@@ -16,6 +17,8 @@ class ProdutoController extends Controller
                 'subcategoria.categoria'
             ])->where('id', $id)->first();
 
+            $produto->update(['visualizados' => $produto->visualizados + 1]);
+
             $produtosRelacionados = Produto::with([
                 'subcategoria'
             ])
@@ -24,15 +27,25 @@ class ProdutoController extends Controller
             ->limit(10)
             ->get();
 
+            $categorias = Categoria::with([
+                'subcategorias',
+            ])
+            ->get();
+
             $produtosPopulares = Produto::with([
                 'subcategoria'
             ])
-            ->where('subcategoria_id',  $produto->subcategoria_id)
+            ->orderBy('visualizados', 'desc')
             ->inRandomOrder()
-            ->limit(4)
+            ->limit(5)
             ->get();
     
-            return view('produtos.detail', compact('produto', 'produtosRelacionados', 'produtosPopulares'));
+            return view('produtos.detail', compact(
+                'produto', 
+                'produtosRelacionados', 
+                'produtosPopulares',
+                'categorias'
+            ));
         } catch (\Throwable $th) {
             //throw $th;
         }
