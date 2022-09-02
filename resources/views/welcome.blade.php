@@ -20,7 +20,7 @@
 						<div class="topbar-menu left-menu">
 							<ul>
 								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
+									<a title="Telefone: 86 9533-0359" href="#" ><span class="icon label-before fa fa-mobile"></span>Telefone: 86 9533-0359</a>
 								</li>
 							</ul>
 						</div>
@@ -38,8 +38,8 @@
 									</ul>
 								</li>
 								<li class="menu-item menu-item-has-children parent" >
-									<a title="Dollar (USD)" href="#">Dollar (USD)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-									<ul class="submenu curency" >
+									<a title="Real (BR)" href="#">Real<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									{{-- <ul class="submenu curency" >
 										<li class="menu-item" >
 											<a title="Pound (GBP)" href="#">Pound (GBP)</a>
 										</li>
@@ -49,7 +49,7 @@
 										<li class="menu-item" >
 											<a title="Dollar (USD)" href="#">Dollar (USD)</a>
 										</li>
-									</ul>
+									</ul> --}}
 								</li>
 							</ul>
 						</div>
@@ -60,35 +60,25 @@
 					<div class="mid-section main-info-area">
 
 						<div class="wrap-logo-top left-section">
-							<a href="index.html" class="link-to-home"><img src="assets/images/logo-top-1.png" alt="mercado"></a>
+							<a href="{{ route('index') }}" class="link-to-home"><img src="assets/images/logo-top-1.png" alt="mercado"></a>
 						</div>
 
 						<div class="wrap-search center-section">
 							<div class="wrap-search-form">
 								<form action="#" id="form-search-top" name="form-search-top">
-									<input type="text" name="search" value="" placeholder="Search here...">
+									<input type="text" name="search" value="" placeholder="Pesquise aqui...">
 									<button form="form-search-top" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
 									<div class="wrap-list-cate">
 										<input type="hidden" name="product-cate" value="0" id="product-cate">
-										<a href="#" class="link-control">All Category</a>
+										<a href="#" class="link-control">Categorias</a>
 										<ul class="list-cate">
-											<li class="level-0">All Category</li>
-											<li class="level-1">-Electronics</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Headphone & Headsets</li>
-											<li class="level-2">Mp3 Player & Acessories</li>
-											<li class="level-1">-Smartphone & Table</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Mp3 Player & Headphones</li>
-											<li class="level-2">Table & Accessories</li>
-											<li class="level-1">-Electronics</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Headphone & Headsets</li>
-											<li class="level-2">Mp3 Player & Acessories</li>
-											<li class="level-1">-Smartphone & Table</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Mp3 Player & Headphones</li>
-											<li class="level-2">Table & Accessories</li>
+											<li class="level-0">Categorias</li>
+											@foreach ($categorias as $categoria)
+												<li class="level-1">-{{ $categoria->descricao ?? '' }}</li>
+												@foreach ($categoria->subcategorias as $subcategoria)
+													<li class="level-2">{{ $subcategoria->descricao ?? '- - -' }}</li>
+												@endforeach
+											@endforeach
 										</ul>
 									</div>
 								</form>
@@ -101,16 +91,16 @@
 									<i class="fa fa-heart" aria-hidden="true"></i>
 									<div class="left-info">
 										<span class="index">0 item</span>
-										<span class="title">Wishlist</span>
+										<span class="title">LISTA</span>
 									</div>
 								</a>
 							</div>
 							<div class="wrap-icon-section minicart">
-								<a href="#" class="link-direction">
+								<a href="{{ route('produtos.carrinho') }}" class="link-direction">
 									<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 									<div class="left-info">
 										<span class="index">4 items</span>
-										<span class="title">CART</span>
+										<span class="title">SACOLA</span>
 									</div>
 								</a>
 							</div>
@@ -127,7 +117,7 @@
 				</div>
 
 				<div class="nav-section header-sticky">
-					<div class="header-nav-section">
+					{{-- <div class="header-nav-section">
 						<div class="container">
 							<ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info" >
 								<li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
@@ -137,29 +127,20 @@
 								<li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
 							</ul>
 						</div>
-					</div>
+					</div> --}}
 
 					<div class="primary-nav-section">
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
 								<li class="menu-item home-icon">
-									<a href="index.html" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
+									<a href="{{ route('index') }}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
-									<a href="about-us.html" class="link-term mercado-item-title">About Us</a>
+									<a href="{{ route('produtos.carrinho') }}" class="link-term mercado-item-title">Sacola</a>
 								</li>
 								<li class="menu-item">
-									<a href="shop.html" class="link-term mercado-item-title">Shop</a>
+									<a href="{{ route('comprar') }}" class="link-term mercado-item-title">Comprar</a>
 								</li>
-								<li class="menu-item">
-									<a href="cart.html" class="link-term mercado-item-title">Cart</a>
-								</li>
-								<li class="menu-item">
-									<a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
-								</li>
-								<li class="menu-item">
-									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
-								</li>																	
 							</ul>
 						</div>
 					</div>
@@ -291,7 +272,7 @@
 											</div>
 											<div class="product-info">
 												<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-												<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
+												<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> </div>
 											</div>
 										</div>
 									@endforeach
@@ -331,19 +312,19 @@
 													$imagemFirst = !empty($produto->imagens->first()->imagem) ? $produto->imagens->first()->imagem : 'sem-imagem.jpg';
 												@endphp
 												<div class="product-thumnail">
-													<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-														<figure><img src="{{ $path . $imagemFirst }}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+													<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" title="{{ $produto->nome ?? '' }}	">
+														<figure><img src="{{ $path . $imagemFirst }}" width="800" height="800" alt="{{ $produto->nome ?? '' }}	"></figure>
 													</a>
 													<div class="group-flash">
 														<span class="flash-item new-label">new</span>
 													</div>
 													<div class="wrap-btn">
-														<a href="#" class="function-link">quick view</a>
+														<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" class="function-link">Ver</a>
 													</div>
 												</div>
 												<div class="product-info">
-													<a href="#" class="product-name"><span>{{ $produto->nome ?? '' }}</span></a>
-													<div class="wrap-price"><span class="product-price">$250.00</span></div>
+													<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" class="product-name"><span>{{ $produto->nome ?? '' }}</span></a>
+													<div class="wrap-price"><span class="product-price">R${{ $produto->valor ?? '' }}</span></div>
 												</div>
 											</div>
 										@endforeach
@@ -359,240 +340,202 @@
 
 	</main>
 
+	<!--footer area-->
 	<footer id="footer">
-		<div class="wrap-footer-content footer-style-1">
+	    <div class="wrap-footer-content footer-style-1">
 
-			<div class="wrap-function-info">
-				<div class="container">
-					<ul>
-						<li class="fc-info-item">
-							<i class="fa fa-truck" aria-hidden="true"></i>
-							<div class="wrap-left-info">
-								<h4 class="fc-name">Free Shipping</h4>
-								<p class="fc-desc">Free On Oder Over $99</p>
-							</div>
+	        <div class="wrap-function-info">
+	            <div class="container">
+	                <ul>
+	                    <li class="fc-info-item">
+	                        <i class="fa fa-truck" aria-hidden="true"></i>
+	                        <div class="wrap-left-info">
+	                            <h4 class="fc-name">Taxa de entrega</h4>
+	                            <p class="fc-desc">5 REAIS</p>
+	                        </div>
 
-						</li>
-						<li class="fc-info-item">
-							<i class="fa fa-recycle" aria-hidden="true"></i>
-							<div class="wrap-left-info">
-								<h4 class="fc-name">Guarantee</h4>
-								<p class="fc-desc">30 Days Money Back</p>
-							</div>
+	                    </li>
+	                    <li class="fc-info-item">
+	                        <i class="fa fa-recycle" aria-hidden="true"></i>
+	                        <div class="wrap-left-info">
+	                            <h4 class="fc-name">Garantia</h4>
+	                            <p class="fc-desc">Até 3 dias e está com a etiqueta</p>
+	                        </div>
 
-						</li>
-						<li class="fc-info-item">
-							<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
-							<div class="wrap-left-info">
-								<h4 class="fc-name">Safe Payment</h4>
-								<p class="fc-desc">Safe your online payment</p>
-							</div>
+	                    </li>
+	                    <li class="fc-info-item">
+	                        <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+	                        <div class="wrap-left-info">
+	                            <h4 class="fc-name">Formas de pagamento</h4>
+	                            <p class="fc-desc">Cartão, pix, dinheiro em espécie.</p>
+	                        </div>
 
-						</li>
-						<li class="fc-info-item">
-							<i class="fa fa-life-ring" aria-hidden="true"></i>
-							<div class="wrap-left-info">
-								<h4 class="fc-name">Online Suport</h4>
-								<p class="fc-desc">We Have Support 24/7</p>
-							</div>
+	                    </li>
+	                    <li class="fc-info-item">
+	                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+	                        <div class="wrap-left-info">
+	                            <h4 class="fc-name">Whatsapp</h4>
+	                            <p class="fc-desc">86 99919-1751</p>
+	                        </div>
 
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!--End function info-->
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <!--End function info-->
 
-			<div class="main-footer-content">
+	        <div class="main-footer-content">
 
-				<div class="container">
+	            <div class="container">
 
-					<div class="row">
+	                <div class="row">
 
-						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-							<div class="wrap-footer-item">
-								<h3 class="item-header">Contact Details</h3>
-								<div class="item-content">
-									<div class="wrap-contact-detail">
-										<ul>
-											<li>
-												<i class="fa fa-map-marker" aria-hidden="true"></i>
-												<p class="contact-txt">45 Grand Central Terminal New York,NY 1017 United State USA</p>
-											</li>
-											<li>
-												<i class="fa fa-phone" aria-hidden="true"></i>
-												<p class="contact-txt">(+123) 456 789 - (+123) 666 888</p>
-											</li>
-											<li>
-												<i class="fa fa-envelope" aria-hidden="true"></i>
-												<p class="contact-txt">Contact@yourcompany.com</p>
-											</li>											
-										</ul>
+	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+	                        <div class="wrap-footer-item">
+	                            <h3 class="item-header">Contatos</h3>
+	                            <div class="item-content">
+	                                <div class="wrap-contact-detail">
+	                                    <ul>
+	                                        <li>
+	                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+	                                            <p class="contact-txt">Rua Antônio Tomaz da Costa Parnaíba-PI, Bairro joão 23, casa 195.</p>
+	                                        </li>
+	                                        <li>
+	                                            <i class="fa fa-phone" aria-hidden="true"></i>
+	                                            <p class="contact-txt">(+55) 86 9533-0359</p>
+	                                        </li>
+	                                        {{-- <li>
+	                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+	                                            <p class="contact-txt">Contact@yourcompany.com</p>
+	                                        </li>	                                         --}}
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+
+	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+
+	                        <div class="wrap-footer-item">
+	                            <h3 class="item-header">Linha de contatos</h3>
+	                            <div class="item-content">
+	                                <div class="wrap-hotline-footer">
+	                                    <span class="desc">Telefone para ligação</span>
+	                                    <b class="phone-number">(+55)86 9533-0359</b>
+	                                </div>
+	                            </div>
+	                        </div>
+
+	                        {{-- <div class="wrap-footer-item footer-item-second">
+	                            <h3 class="item-header">Sign up for newsletter</h3>
+	                            <div class="item-content">
+	                                <div class="wrap-newletter-footer">
+	                                    <form action="#" class="frm-newletter" id="frm-newletter">
+	                                        <input type="email" class="input-email" name="email" value="" placeholder="Enter your email address">
+	                                        <button class="btn-submit">Subscribe</button>
+	                                    </form>
+	                                </div>
+	                            </div>
+	                        </div> --}}
+
+	                    </div>
+
+	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 box-twin-content ">
+	                        <div class="row">
+	                            <div class="wrap-footer-item twin-item">
+	                                <h3 class="item-header">Minha conta</h3>
+	                                <div class="item-content">
+	                                    <div class="wrap-vertical-nav">
+	                                        <ul>
+	                                            <li class="menu-item"><a href="#" class="link-term">Perfil</a></li>
+	                                            <li class="menu-item"><a href="#" class="link-term">Lista de comprar</a></li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="wrap-footer-item twin-item">
+	                                <h3 class="item-header">Informações</h3>
+	                                <div class="item-content">
+	                                    <div class="wrap-vertical-nav">
+	                                        <ul>
+	                                            <li class="menu-item"><a href="#" class="link-term">Contate-nos</a></li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+
+	                </div>
+
+	                {{-- <div class="row">
+
+	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+	                        <div class="wrap-footer-item">
+	                            <h3 class="item-header">USAMOS PAGAMENTOS SEGUROS:</h3>
+	                            <div class="item-content">
+	                                <div class="wrap-list-item wrap-gallery">
+										<img src="/assets/images/payment.png" style="max-width: 260px;">
 									</div>
+	                            </div>
+	                        </div>
+	                    </div>
+
+	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+	                        <div class="wrap-footer-item">
+	                            <h3 class="item-header">Social network</h3>
+	                            <div class="item-content">
+	                                <div class="wrap-list-item social-network">
+	                                    <ul>
+	                                        <li><a href="#" class="link-to-item" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	                                        <li><a href="#" class="link-to-item" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	                                        <li><a href="#" class="link-to-item" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+	                                        <li><a href="#" class="link-to-item" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+	                                        <li><a href="#" class="link-to-item" title="vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+
+	                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+	                        <div class="wrap-footer-item">
+	                            <h3 class="item-header">Dowload App</h3>
+	                            <div class="item-content">
+	                                <div class="wrap-list-item apps-list">
+	                                    <ul>
+	                                        <li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="/assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
+	                                        <li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="/assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div> --}}
+
+	                {{-- </div> --}}
+	            </div>
+
+	            <div class="wrap-back-link">
+	                <div class="container">
+	                    <div class="back-link-box">
+	                        <h3 class="backlink-title">Links rápidos</h3>
+							@foreach ($categorias as $categoria)
+	                        <div class="back-link-row">
+									<ul class="list-back-link" >
+										<li><span class="row-title">{{ $categoria->descricao ?? '[NÃO INFORMAO]' }}:</span></li>
+										@foreach ($categoria->subcategorias as $subcategoria)
+											<li><a href="#" class="redirect-back-link" title="mobile">{{ $subcategoria->descricao ?? '[NÃO INFORMADO]' }}</a></li>
+										@endforeach
+									</ul>
 								</div>
-							</div>
-						</div>
+								@endforeach
+	                    </div>
+	                </div>
+	            </div>
 
-						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+	        </div>
 
-							<div class="wrap-footer-item">
-								<h3 class="item-header">Hot Line</h3>
-								<div class="item-content">
-									<div class="wrap-hotline-footer">
-										<span class="desc">Call Us toll Free</span>
-										<b class="phone-number">(+123) 456 789 - (+123) 666 888</b>
-									</div>
-								</div>
-							</div>
-
-							<div class="wrap-footer-item footer-item-second">
-								<h3 class="item-header">Sign up for newsletter</h3>
-								<div class="item-content">
-									<div class="wrap-newletter-footer">
-										<form action="#" class="frm-newletter" id="frm-newletter">
-											<input type="email" class="input-email" name="email" value="" placeholder="Enter your email address">
-											<button class="btn-submit">Subscribe</button>
-										</form>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 box-twin-content ">
-							<div class="row">
-								<div class="wrap-footer-item twin-item">
-									<h3 class="item-header">My Account</h3>
-									<div class="item-content">
-										<div class="wrap-vertical-nav">
-											<ul>
-												<li class="menu-item"><a href="#" class="link-term">My Account</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Brands</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Gift Certificates</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Affiliates</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Wish list</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="wrap-footer-item twin-item">
-									<h3 class="item-header">Infomation</h3>
-									<div class="item-content">
-										<div class="wrap-vertical-nav">
-											<ul>
-												<li class="menu-item"><a href="#" class="link-term">Contact Us</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Returns</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Site Map</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Specials</a></li>
-												<li class="menu-item"><a href="#" class="link-term">Order History</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-
-						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-							<div class="wrap-footer-item">
-								<h3 class="item-header">We Using Safe Payments:</h3>
-								<div class="item-content">
-									<div class="wrap-list-item wrap-gallery">
-										<img src="assets/images/payment.png" style="max-width: 260px;">
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-							<div class="wrap-footer-item">
-								<h3 class="item-header">Social network</h3>
-								<div class="item-content">
-									<div class="wrap-list-item social-network">
-										<ul>
-											<li><a href="#" class="link-to-item" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-							<div class="wrap-footer-item">
-								<h3 class="item-header">Dowload App</h3>
-								<div class="item-content">
-									<div class="wrap-list-item apps-list">
-										<ul>
-											<li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
-											<li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="wrap-back-link">
-					<div class="container">
-						<div class="back-link-box">
-							<h3 class="backlink-title">Quick Links</h3>
-							<div class="back-link-row">
-								<ul class="list-back-link" >
-									<li><span class="row-title">Mobiles:</span></li>
-									<li><a href="#" class="redirect-back-link" title="mobile">Mobiles</a></li>
-									<li><a href="#" class="redirect-back-link" title="yphones">YPhones</a></li>
-									<li><a href="#" class="redirect-back-link" title="Gianee Mobiles GL">Gianee Mobiles GL</a></li>
-									<li><a href="#" class="redirect-back-link" title="Mobiles Karbonn">Mobiles Karbonn</a></li>
-									<li><a href="#" class="redirect-back-link" title="Mobiles Viva">Mobiles Viva</a></li>
-									<li><a href="#" class="redirect-back-link" title="Mobiles Intex">Mobiles Intex</a></li>
-									<li><a href="#" class="redirect-back-link" title="Mobiles Micrumex">Mobiles Micrumex</a></li>
-									<li><a href="#" class="redirect-back-link" title="Mobiles Bsus">Mobiles Bsus</a></li>
-									<li><a href="#" class="redirect-back-link" title="Mobiles Samsyng">Mobiles Samsyng</a></li>
-									<li><a href="#" class="redirect-back-link" title="Mobiles Lenova">Mobiles Lenova</a></li>
-								</ul>
-
-								<ul class="list-back-link" >
-									<li><span class="row-title">Tablets:</span></li>
-									<li><a href="#" class="redirect-back-link" title="Plesc YPads">Plesc YPads</a></li>
-									<li><a href="#" class="redirect-back-link" title="Samsyng Tablets" >Samsyng Tablets</a></li>
-									<li><a href="#" class="redirect-back-link" title="Qindows Tablets" >Qindows Tablets</a></li>
-									<li><a href="#" class="redirect-back-link" title="Calling Tablets" >Calling Tablets</a></li>
-									<li><a href="#" class="redirect-back-link" title="Micrumex Tablets" >Micrumex Tablets</a></li>
-									<li><a href="#" class="redirect-back-link" title="Lenova Tablets Bsus" >Lenova Tablets Bsus</a></li>
-									<li><a href="#" class="redirect-back-link" title="Tablets iBall" >Tablets iBall</a></li>
-									<li><a href="#" class="redirect-back-link" title="Tablets Swipe" >Tablets Swipe</a></li>
-									<li><a href="#" class="redirect-back-link" title="Tablets TVs, Audio" >Tablets TVs, Audio</a></li>
-								</ul>
-
-								<ul class="list-back-link" >
-									<li><span class="row-title">Fashion:</span></li>
-									<li><a href="#" class="redirect-back-link" title="Sarees Silk" >Sarees Silk</a></li>
-									<li><a href="#" class="redirect-back-link" title="sarees Salwar" >sarees Salwar</a></li>
-									<li><a href="#" class="redirect-back-link" title="Suits Lehengas" >Suits Lehengas</a></li>
-									<li><a href="#" class="redirect-back-link" title="Biba Jewellery" >Biba Jewellery</a></li>
-									<li><a href="#" class="redirect-back-link" title="Rings Earrings" >Rings Earrings</a></li>
-									<li><a href="#" class="redirect-back-link" title="Diamond Rings" >Diamond Rings</a></li>
-									<li><a href="#" class="redirect-back-link" title="Loose Diamond Shoes" >Loose Diamond Shoes</a></li>
-									<li><a href="#" class="redirect-back-link" title="BootsMen Watches" >BootsMen Watches</a></li>
-									<li><a href="#" class="redirect-back-link" title="Women Watches" >Women Watches</a></li>
-								</ul>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="coppy-right-box">
+	        <div class="coppy-right-box">
 				<div class="container">
 					<div class="coppy-right-item item-left">
 						<p class="coppy-right-text">Copyright © 2020 Surfside Media. All rights reserved</p>
@@ -610,7 +553,8 @@
 					<div class="clearfix"></div>
 				</div>
 			</div>
-		</div>
+	    </div>
 	</footer>
+	<!--footer area-->
 </div>
 @endsection  

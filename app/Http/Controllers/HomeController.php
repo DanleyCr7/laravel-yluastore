@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\SubCategoria;
 use App\Models\Produto;
+use App\Models\Categoria;
 
 class HomeController extends Controller
 {
@@ -40,13 +41,19 @@ class HomeController extends Controller
             ->inRandomOrder()
             ->limit(10)
             ->get();
+
+            $categorias = Categoria::with([
+                'subcategorias',
+            ])
+            ->get();
             
             return view('welcome', compact(
                 'disponiveis',
                 'promocoes',
                 'subcategorias',
                 'produtosRecentes',
-                'produtosDisponiveis'
+                'produtosDisponiveis',
+                'categorias'
             ));
         } catch (\Throwable $th) {
             //throw $th;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Produto;
 use App\Models\Categoria;
+use App\Models\SubCategoria;
 
 class ProdutoController extends Controller
 {
@@ -49,5 +50,33 @@ class ProdutoController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    public function comprar($subcategoria_id = null)
+    {
+        $categorias = Categoria::with([
+            'subcategorias',
+        ])
+        ->get();
+        
+        $subCategoria = SubCategoria::find(4);
+
+        $produtos = Produto::with([
+            'imagens',
+            'subcategoria'
+        ])
+        ->when(!empty($subcategoria_id), function($query) use($subcategoria_id){
+            return $query->where('subcategoria_id', $subcategoria_id);
+        })
+        ->orderBy('visualizados', 'desc')
+        ->inRandomOrder()
+        ->paginate(10);
+
+        return view('produtos.shop', compact('categorias', 'subCategoria', 'produtos'));
+    }
+    
+    public function carrinho()
+    {   
+        return view('produtos.cart');
     }
 }
