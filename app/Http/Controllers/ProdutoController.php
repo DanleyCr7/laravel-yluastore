@@ -52,8 +52,8 @@ class ProdutoController extends Controller
         }
     }
 
-    public function comprar($subcategoria_id = null)
-    {
+    public function comprar(Request $request, $subcategoria_id = null)
+    {   
         $categorias = Categoria::with([
             'subcategorias',
         ])
@@ -61,7 +61,7 @@ class ProdutoController extends Controller
         
         $subCategoria = SubCategoria::find(4);
 
-        $produtos = Produto::with([
+        $produtos = Produto::query()->with([
             'imagens',
             'subcategoria'
         ])
@@ -69,10 +69,17 @@ class ProdutoController extends Controller
             return $query->where('subcategoria_id', $subcategoria_id);
         })
         ->orderBy('visualizados', 'desc')
-        ->inRandomOrder()
-        ->paginate(10);
+        ->inRandomOrder();
 
-        return view('produtos.shop', compact('categorias', 'subCategoria', 'produtos'));
+        if(!empty($request->menor_preco) && !empty($request->maior_preco)){
+            $produtos->where('valor', '>=' , $request->menor_preco)->where('valor', '<=' , $request->maior_preco);
+        }
+
+        return view('produtos.shop', [
+            'categorias'=> $categorias, 
+            'subCategoria' => $subCategoria, 
+            'produtos'=> $produtos->paginate(10)
+        ]);
     }
     
     public function carrinho()

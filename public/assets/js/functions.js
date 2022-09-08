@@ -24,6 +24,8 @@
     		this.mercado_toggle_vertical_main_menu();
             this.mercado_sticky_menu();
             this.mercado_google_maps();
+            this.filtrar_produto_preco();
+			this.comprar();
     	},
     	onReady: function(){
     		this.mercado_innit_carousel();
@@ -35,6 +37,23 @@
             this.mercado_product_slider();
             this.mercado_tabs();
             this.mercado_sticky_menu();
+		},
+
+		filtrar_produto_preco: function(){
+			$(document).on('click', ".filter-submit", function(el){
+				el.preventDefault();
+				var maior_preco = $( "#slider-range" ).slider( "values", 1 );
+				var menor_preco = $( "#slider-range" ).slider( "values", 0 );
+
+				postForm("/comprar", { menor_preco, maior_preco });
+			});
+		},
+
+		comprar: function(){
+			$(document).on('click', ".shop_", function(el){
+				el.preventDefault();
+				postForm("/comprar", null);
+			});
 		},
 
     	mercado_product_slider: function(){
@@ -121,13 +140,13 @@
                     range: true,
                     min: 0,
                     max: 500,
-                    values: [ 75, 300 ],
+                    values: [ 15, 70 ],
                     slide: function( event, ui ) {
-                        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                        $( "#amount" ).val( "R$" + ui.values[ 0 ] + " - R$" + ui.values[ 1 ] );
                     }
                 });
-                $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-                    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+                $( "#amount" ).val( "R$" + $( "#slider-range" ).slider( "values", 0 ) +
+                    " - R$" + $( "#slider-range" ).slider( "values", 1 ) );
             }
 		},
         /* ---------------------------------------------
@@ -605,4 +624,34 @@
 	$(window).on("resize", function() {
 		MERCADO_JS.onResize();
 	});
+
+	function postForm(path, params, method) {
+			method = method || 'post';
+		
+			var form = document.createElement('form');
+			form.setAttribute('method', method);
+			form.setAttribute('action', path);
+		
+			var csrfVar = $('meta[name="csrf-token"]').attr('content');
+			var hiddenField = document.createElement('input');
+			hiddenField.setAttribute('type', 'hidden');
+			hiddenField.setAttribute('name', '_token');
+			hiddenField.setAttribute('value', csrfVar);
+			form.appendChild(hiddenField);
+
+			for (var key in  params) {
+				if (params.hasOwnProperty(key)) {
+					var hiddenField = document.createElement('input');
+					hiddenField.setAttribute('type', 'hidden');
+					hiddenField.setAttribute('name', key);
+					hiddenField.setAttribute('value', params[key]);
+		
+					form.appendChild(hiddenField);
+				}
+			}
+		
+			document.body.appendChild(form);
+			form.submit();
+	};
+
 })(window.Zepto || window.jQuery, window, document);
