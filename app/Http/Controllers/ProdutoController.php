@@ -59,6 +59,15 @@ class ProdutoController extends Controller
             'subcategorias',
         ])
         ->get();
+
+        $subcategorias = SubCategoria::with([
+            'produtos',
+        ])
+        ->whereHas('produtos', function($query){
+            return  $query->orderBy('visualizados', 'desc')->inRandomOrder();
+        })
+        ->limit(7)
+        ->get();
         
         $produtos = Produto::query()->with([
             'imagens',
@@ -85,7 +94,8 @@ class ProdutoController extends Controller
 
         return view('produtos.shop', [
             'categorias'=> $categorias, 
-            'produtos'=> $produtos->paginate(10)
+            'produtos'=> $produtos->paginate(10),
+            'subcategorias' => $subcategorias,
         ]);
     }
     

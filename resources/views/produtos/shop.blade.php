@@ -39,8 +39,8 @@
 
 						<div class="wrap-right">
 							<div class="change-display-mode">
-								<a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
-								<a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
+								<a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i></a>
+								{{-- <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a> --}}
 							</div>
 						</div>
 
@@ -107,9 +107,15 @@
 					<div class="widget mercado-widget filter-widget brand-widget">
 						<h2 class="widget-title">Brand</h2>
 						<div class="widget-content">
-							<ul class="list-style vertical-list list-limited" data-show="6">
-								<li class="list-item"><a class="filter-link active" href="#">Fashion Clothings</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Laptop Batteries</a></li>
+							<ul class="list-style vertical-list list-limited" data-show="{{ count($subcategorias) + 1}}">
+								@foreach ($subcategorias as $key => $subcategoria)
+									@if($key <= (count($subcategorias)-3))
+										<li class="list-item"><a class="filter-link" href="#">{{ $subcategoria->descricao ?? '' }}</a></li>
+									@else
+										<li class="list-item default-hiden"><a class="filter-link" href="#">{{ $subcategoria->descricao ?? '' }}</a></li>
+									@endif
+								@endforeach
+								{{-- <li class="list-item"><a class="filter-link " href="#">Laptop Batteries</a></li>
 								<li class="list-item"><a class="filter-link " href="#">Printer & Ink</a></li>
 								<li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
 								<li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
@@ -117,8 +123,8 @@
 								<li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
 								<li class="list-item default-hiden"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
 								<li class="list-item default-hiden"><a class="filter-link " href="#">Sound & Speaker</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-								<li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
+								<li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li> --}}
+								<li class="list-item"><a data-label='Ver menos<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Ver mais<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 					</div><!-- brand widget-->
