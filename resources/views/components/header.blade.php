@@ -103,9 +103,6 @@
 									<a href="{{ route('produtos.carrinho') }}" class="link-term mercado-item-title">Sacola</a>
 								</li>
 								<li class="menu-item">
-									{{-- <form id="form_" action="{{ route('comprar') }}" method="post">
-										@csrf
-									</form> --}}
 									<a href="#" class="link-term mercado-item-title shop_">Comprar</a>
 								</li>
 							</ul>

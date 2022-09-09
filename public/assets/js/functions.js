@@ -26,6 +26,8 @@
             this.mercado_google_maps();
             this.filtrar_produto_preco();
 			this.comprar();
+			this.categoriaLink();
+			this.subCategoriaLink();
     	},
     	onReady: function(){
     		this.mercado_innit_carousel();
@@ -53,6 +55,20 @@
 			$(document).on('click', ".shop_", function(el){
 				el.preventDefault();
 				postForm("/comprar", null);
+			});
+		},
+
+		subCategoriaLink: function(){
+			$(document).on('click', ".subcategoria-link", function(el){
+				el.preventDefault();
+				postForm("/comprar", { subcategoria: $(this).attr("data-subcategoria_id") });
+			});
+		},
+
+		categoriaLink: function(){
+			$(document).on('click', ".categoria-link", function(el){
+				el.preventDefault();
+				postForm("/comprar", { categoria: $(this).attr("data-categoria_id") });
 			});
 		},
 

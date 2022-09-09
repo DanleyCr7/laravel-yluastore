@@ -20,7 +20,7 @@
 			<div class="wrap-breadcrumb">
 				<ul>
 					<li class="item-link"><a href="#" class="link">home</a></li>
-					<li class="item-link"><span>{{ $subCategoria->descricao ?? '' }}</span></li>
+					<li class="item-link"><span>{{ 'Resultado' }}</span></li>
 				</ul>
 			</div>
 			<div class="row">
@@ -35,38 +35,13 @@
 
 					<div class="wrap-shop-control">
 
-						<h1 class="shop-title">{{ $subCategoria->descricao ?? '' }}</h1>
+						<h1 class="shop-title">{{ 'Resultado' }}</h1>
 
 						<div class="wrap-right">
-
-							{{-- <div class="sort-item orderby ">
-								<select name="orderby" class="use-chosen" >
-									<option value="menu_order" selected="selected">Default sorting</option>
-									<option value="popularity">Sort by popularity</option>
-									<option value="rating">Sort by average rating</option>
-									<option value="date">Sort by newness</option>
-									<option value="price">Sort by price: low to high</option>
-									<option value="price-desc">Sort by price: high to low</option>
-								</select>
-							</div>
-
-							<div class="sort-item product-per-page">
-								<select name="post-per-page" class="use-chosen" >
-									<option value="12" selected="selected">12 per page</option>
-									<option value="16">16 per page</option>
-									<option value="18">18 per page</option>
-									<option value="21">21 per page</option>
-									<option value="24">24 per page</option>
-									<option value="30">30 per page</option>
-									<option value="32">32 per page</option>
-								</select>
-							</div> --}}
-
 							<div class="change-display-mode">
 								<a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
 								<a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
 							</div>
-
 						</div>
 
 					</div><!--end wrap shop control-->
@@ -114,13 +89,13 @@
 							<ul class="list-category">
                                 @foreach ($categorias as $categoria)
                                     <li class="{{ count($categoria->subcategorias) > 0 ? 'category-item has-child-cate' : 'category-item'}}">
-                                        <a href="#" class="cate-link">{{$categoria->descricao ?? ''}}</a>
+                                        <a href="#" data-categoria_id="{{$categoria->id}}" class="categoria-link">{{$categoria->descricao ?? ''}}</a>
                                         @if(count($categoria->subcategorias) > 0)
                                             <span class="toggle-control">+</span>
                                         @endif
                                         @foreach ($categoria->subcategorias as $subcategoria)
                                             <ul class="sub-cate">
-                                                <li class="category-item"><a href="#" class="cate-link">{{ $subcategoria->descricao ?? '' }}</a></li>
+                                                <li class="category-item"><a href="#" data-subcategoria_id="{{$subcategoria->id}}" class="subcategoria-link">{{ $subcategoria->descricao ?? '' }}</a></li>
                                             </ul>
                                         @endforeach
                                     </li>
