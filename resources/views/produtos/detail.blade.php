@@ -38,8 +38,8 @@
 
 			<div class="wrap-breadcrumb">
 				<ul>
-					<li class="item-link"><a href="#" class="link">home</a></li>
-					<li class="item-link"><span>detail</span></li>
+					<li class="item-link"><a href="#" class="link">Inicio</a></li>
+					<li class="item-link"><span>Detalhe</span></li>
 				</ul>
 			</div>
 			<div class="row">
@@ -66,15 +66,15 @@
 							</div>
 						</div>
 						<div class="detail-info">
-							<div class="product-rating">
+							{{-- <div class="product-rating">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <a href="#" class="count-review">(05 review)</a>
-                            </div>
-                            <h2 class="product-name">{{ $produto->nome ?? '[NÃO INFORMADO]' }}</h2>
+                            </div> --}}
+                            <h2 class="product-name nome-produto">{{ $produto->nome ?? '[NÃO INFORMADO]' }}</h2>
                             <div class="short-desc">
                                 <ul>
 									@foreach ($produto->especificacoes as $item)
@@ -82,35 +82,35 @@
 									@endforeach
                                 </ul>
                             </div>
-                            <div class="wrap-social">
+                            {{-- <div class="wrap-social">
                             	<a class="link-socail" href="#"><img src="/assets/images/social-list.png" alt=""></a>
-                            </div>
-                            <div class="wrap-price"><span class="product-price">$ {{ $produto->valor ?? '0.0' }}</span></div>
+                            </div> --}}
+                            <div class="wrap-price"><span class="product-price valor-produto">R$ {{ $produto->valor ?? '[NÃO INFORMADO]' }}</span></div>
                             <div class="stock-info in-stock">
-                                <p class="availability">Availability: <b>In Stock</b></p>
+                                <p class="availability">Avaliação: <b>{{ $produto->quantidade > 0 ? 'Disponível' : 'Sem estoque' }}</b></p>
                             </div>
                             <div class="quantity">
-                            	<span>Quantity:</span>
+                            	<span>Quantidade:</span>
 								<div class="quantity-input">
-									<input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
+									<input type="text" name="product-quatity" class="quantidade-produto" value="1" data-max="120" pattern="[0-9]*" >
 									
 									<a class="btn btn-reduce" href="#"></a>
 									<a class="btn btn-increase" href="#"></a>
 								</div>
 							</div>
 							<div class="wrap-butons">
-								<a href="#" class="btn add-to-cart">Add to Cart</a>
-                                <div class="wrap-btn">
+								<a href="#" class="btn add-to-cart">whatsapp <i class="fa fa-whatsapp"></i></a>
+                                {{-- <div class="wrap-btn">
                                     <a href="#" class="btn btn-compare">Add Compare</a>
-                                    <a href="#" class="btn btn-wishlist">Add Wishlist</a>
-                                </div>
+                                    <a href="#" class="btn btn-wishlist">Adicionar Compra</a>
+                                </div> --}}
 							</div>
 						</div>
 						<div class="advance-info">
 							<div class="tab-control normal">
-								<a href="#description" class="tab-control-item active">description</a>
-								<a href="#add_infomation" class="tab-control-item">Addtional Infomation</a>
-								<a href="#review" class="tab-control-item">Reviews</a>
+								<a href="#description" class="tab-control-item active">Descrição</a>
+								<a href="#add_infomation" class="tab-control-item">Informação adicional</a>
+								{{-- <a href="#review" class="tab-control-item">Reviews</a> --}}
 							</div>
 							<div class="tab-contents">
 								<div class="tab-content-item active" id="description">
@@ -131,7 +131,7 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="tab-content-item " id="review">
+								{{-- <div class="tab-content-item " id="review">
 									
 									<div class="wrap-review-form">
 										
@@ -206,7 +206,7 @@
 										</div><!-- #review_form_wrapper -->
 
 									</div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -262,11 +262,11 @@
 											<span class="flash-item new-label">new</span>
 										</div>
 										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
+											<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" class="function-link">Ver</a>
 										</div>
 									</div>
 									<div class="product-info">
-										<a href="#" class="product-name"><span>{{ $produto->nome ?? '[NÃO INFORMADO]' }}</span></a>
+										<a href="{{ route('produtos.detalhe', ['id' => $produto->id]) }}" class="product-name"><span>{{ $produto->nome ?? '[NÃO INFORMADO]' }}</span></a>
 										<div class="wrap-price"><span class="product-price">R${{ !empty($produto->valor) ? $produto->valor : '- - -' }}</span></div>
 									</div>
 								</div>

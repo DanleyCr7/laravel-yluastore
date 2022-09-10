@@ -30,6 +30,7 @@
 			this.subCategoriaLink();
 			this.selectSubcategoria();
 			this.pagelink();
+			this.redirectWhatsapp();
     	},
     	onReady: function(){
     		this.mercado_innit_carousel();
@@ -99,6 +100,17 @@
 			$(document).on('click', ".categoria-link", function(el){
 				el.preventDefault();
 				postForm("/comprar", { categoria: $(this).attr("data-categoria_id") });
+			});
+		},
+
+		redirectWhatsapp: function(){
+			$(document).on('click', ".add-to-cart", function(el){
+				el.preventDefault();
+				var nome_produto = $('.nome-produto').text();
+				var quantidade_produto = $('.quantidade-produto').val();
+				var valor_produto = $('.valor-produto').text();
+
+				window.open(`https://wa.me/+558695330359?text=Oi%20lojinha%20ylua%20store%20gostaria%20de%20comprar%20${quantidade_produto}%20${nome_produto}%20que%20está%20no%20valor%20de%20${valor_produto}`, '_blank');
 			});
 		},
 

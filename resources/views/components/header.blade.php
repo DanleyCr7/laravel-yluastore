@@ -13,15 +13,18 @@
 						</div>
 						<div class="topbar-menu right-menu">
 							<ul>
-								<li class="menu-item" ><a title="Register or Login" href="login.html">Login</a></li>
-								<li class="menu-item" ><a title="Register or Login" href="register.html">Register</a></li>
-								<li class="menu-item lang-menu menu-item-has-children parent">
-									<a title="English" href="#"><span class="img label-before"><img src="assets/images/lang-en.png" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								{{-- <li class="menu-item" ><a title="Register or Login" href="login.html">Login</a></li>
+								<li class="menu-item" ><a title="Register or Login" href="register.html">Register</a></li> --}}
+								<li class="menu-item lang-menu ">
+									<a title="English" href="#">
+										<span class="img label-before"><img src="/assets/images/lang-br.png" alt="lang-en"></span>Brasil
+										{{-- <i class="fa fa-angle-down" aria-hidden="true"></i> --}}
+									</a>
 									<ul class="submenu lang" >
-										<li class="menu-item" ><a title="hungary" href="#"><span class="img label-before"><img src="assets/images/lang-hun.png" alt="lang-hun"></span>Hungary</a></li>
-										<li class="menu-item" ><a title="german" href="#"><span class="img label-before"><img src="assets/images/lang-ger.png" alt="lang-ger" ></span>German</a></li>
-										<li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="assets/images/lang-fra.png" alt="lang-fre"></span>French</a></li>
-										<li class="menu-item" ><a title="canada" href="#"><span class="img label-before"><img src="assets/images/lang-can.png" alt="lang-can"></span>Canada</a></li>
+										{{-- <li class="menu-item" ><a title="hungary" href="#"><span class="img label-before"><img src="/assets/images/lang-hun.png" alt="lang-hun"></span>Hungary</a></li>
+										<li class="menu-item" ><a title="german" href="#"><span class="img label-before"><img src="/assets/images/lang-ger.png" alt="lang-ger" ></span>German</a></li>
+										<li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="/assets/images/lang-fra.png" alt="lang-fre"></span>French</a></li>
+										<li class="menu-item" ><a title="canada" href="#"><span class="img label-before"><img src="/assets/images/lang-can.png" alt="lang-can"></span>Canada</a></li> --}}
 									</ul>
 								</li>
 								<li class="menu-item menu-item-has-children parent" >
@@ -62,7 +65,7 @@
 						</div>
 
 						<div class="wrap-icon right-section">
-							<div class="wrap-icon-section wishlist">
+							{{-- <div class="wrap-icon-section wishlist">
 								<a href="#" class="link-direction">
 									<i class="fa fa-heart" aria-hidden="true"></i>
 									<div class="left-info">
@@ -70,8 +73,8 @@
 										<span class="title">LISTA</span>
 									</div>
 								</a>
-							</div>
-							<div class="wrap-icon-section minicart">
+							</div> --}}
+							{{-- <div class="wrap-icon-section minicart">
 								<a href="{{ route('produtos.carrinho') }}" class="link-direction">
 									<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 									<div class="left-info">
@@ -79,7 +82,7 @@
 										<span class="title">SACOLA</span>
 									</div>
 								</a>
-							</div>
+							</div> --}}
 							<div class="wrap-icon-section show-up-after-1024">
 								<a href="#" class="mobile-navigation">
 									<span></span>
@@ -99,9 +102,9 @@
 								<li class="menu-item home-icon">
 									<a href="{{ route('index') }}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
-								<li class="menu-item">
+								{{-- <li class="menu-item">
 									<a href="{{ route('produtos.carrinho') }}" class="link-term mercado-item-title">Sacola</a>
-								</li>
+								</li> --}}
 								<li class="menu-item">
 									<a href="#" class="link-term mercado-item-title shop_">Comprar</a>
 								</li>
