@@ -28,6 +28,7 @@
 			this.comprar();
 			this.categoriaLink();
 			this.subCategoriaLink();
+			this.selectSubcategoria();
     	},
     	onReady: function(){
     		this.mercado_innit_carousel();
@@ -69,6 +70,19 @@
 			$(document).on('click', ".categoria-link", function(el){
 				el.preventDefault();
 				postForm("/comprar", { categoria: $(this).attr("data-categoria_id") });
+			});
+		},
+
+		selectSubcategoria: function(){
+			$(document).on('click', ".filter-link", function(el){
+				el.preventDefault();
+				let filterLink = $(this);
+				if(filterLink.hasClass('active')){
+					filterLink.removeClass('active');
+					return;
+				}
+				filterLink.addClass('active');
+				// postForm("/comprar", { categoria: $(this).attr("data-categoria_id") });
 			});
 		},
 

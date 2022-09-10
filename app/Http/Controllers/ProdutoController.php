@@ -16,7 +16,9 @@ class ProdutoController extends Controller
             $produto = Produto::with([
                 'imagens',
                 'subcategoria.categoria'
-            ])->where('id', $id)->first();
+            ])
+            ->where('id', $id)
+            ->first();
 
             $produto->update(['visualizados' => $produto->visualizados + 1]);
 
@@ -64,9 +66,18 @@ class ProdutoController extends Controller
             'produtos',
         ])
         ->whereHas('produtos', function($query){
-            return  $query->orderBy('visualizados', 'desc')->inRandomOrder();
+            return  $query->orderBy('visualizados', 'desc');
         })
+        ->inRandomOrder()
         ->limit(7)
+        ->get();
+
+        $produtosPopulares = Produto::with([
+            'subcategoria'
+        ])
+        ->orderBy('visualizados', 'desc')
+        ->inRandomOrder()
+        ->limit(4)
         ->get();
         
         $produtos = Produto::query()->with([
@@ -96,11 +107,28 @@ class ProdutoController extends Controller
             'categorias'=> $categorias, 
             'produtos'=> $produtos->paginate(10),
             'subcategorias' => $subcategorias,
+            'produtosPopulares' => $produtosPopulares,
         ]);
     }
     
     public function carrinho()
     {   
-        return view('produtos.cart');
+        $categorias = Categoria::with([
+            'subcategorias',
+        ])
+        ->get();
+
+        $produtosMaisVistos = Produto::with([
+            'subcategoria'
+        ])
+        ->orderBy('visualizados', 'desc')
+        ->inRandomOrder()
+        ->limit(10)
+        ->get();
+
+        return view('produtos.cart', [
+            'categorias' => $categorias,
+            'produtosMaisVistos' => $produtosMaisVistos,
+        ]);
     }
 }
