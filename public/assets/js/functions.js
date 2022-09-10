@@ -24,7 +24,7 @@
     		this.mercado_toggle_vertical_main_menu();
             this.mercado_sticky_menu();
             this.mercado_google_maps();
-            this.filtrar_produto_preco();
+            this.filtrar_produto_preco_e_subcategoria();
 			this.comprar();
 			this.categoriaLink();
 			this.subCategoriaLink();
@@ -42,13 +42,21 @@
             this.mercado_sticky_menu();
 		},
 
-		filtrar_produto_preco: function(){
+		filtrar_produto_preco_e_subcategoria: function(){
 			$(document).on('click', ".filter-submit", function(el){
 				el.preventDefault();
 				var maior_preco = $( "#slider-range" ).slider( "values", 1 );
 				var menor_preco = $( "#slider-range" ).slider( "values", 0 );
+				var subcategoriasSelecionadas=[];
+				$(".list-limited").children().each(function(index, item){
+					if(index < $(".list-limited").children().length - 1){
+						if($(this).find('a').hasClass('active')){
+							subcategoriasSelecionadas.push($(this).attr("data-subcategoria_id"));
+						}
+					}
+				});
 
-				postForm("/comprar", { menor_preco, maior_preco });
+				postForm("/comprar", { menor_preco, maior_preco, subcategoriasSelecionadas });
 			});
 		},
 
@@ -82,7 +90,6 @@
 					return;
 				}
 				filterLink.addClass('active');
-				// postForm("/comprar", { categoria: $(this).attr("data-categoria_id") });
 			});
 		},
 
@@ -681,6 +688,7 @@
 			}
 		
 			document.body.appendChild(form);
+			// console.log(form);
 			form.submit();
 	};
 

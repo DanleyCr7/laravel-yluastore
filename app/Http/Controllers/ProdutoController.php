@@ -56,7 +56,6 @@ class ProdutoController extends Controller
 
     public function comprar(Request $request)
     {   
-
         $categorias = Categoria::with([
             'subcategorias',
         ])
@@ -103,11 +102,29 @@ class ProdutoController extends Controller
             });
         }
 
+        if(!empty($request->subcategoriasSelecionadas)){
+            $subcategoriasSelecionadas = explode(",", $request->subcategoriasSelecionadas);
+            $subcategoriasActive = collect([]);
+            //essa condicao do foreach é somente para repassar o valor dos itens que foram selecionado no filtro
+            foreach ($subcategoriasSelecionadas as $key => $subcategoriaSelecionada) {
+                $subcategoria = $subcategorias->where('id', $subcategoriaSelecionada)->first();
+                if(!empty($subcategoria)){
+                    $subcategoria['situacao'] = 1;
+                    $subcategoriasActive->push($subcategoria);
+                }
+            }
+
+            $produtos->whereHas('subcategoria', function($query) use($subcategoriasSelecionadas){
+                return $query->whereIn('id', $subcategoriasSelecionadas);
+            });
+        }
+
         return view('produtos.shop', [
             'categorias'=> $categorias, 
             'produtos'=> $produtos->paginate(10),
             'subcategorias' => $subcategorias,
             'produtosPopulares' => $produtosPopulares,
+            'subcategoriasActive' => $subcategoriasActive,
         ]);
     }
     

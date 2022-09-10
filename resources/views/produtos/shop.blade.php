@@ -109,21 +109,20 @@
 						<div class="widget-content">
 							<ul class="list-style vertical-list list-limited" data-show="{{ count($subcategorias) + 1}}">
 								@foreach ($subcategorias as $key => $subcategoria)
+									@php
+										$subcategoriaActive = $subcategoriasActive->where('id', $subcategoria->id)->first();
+									@endphp
 									@if($key <= (count($subcategorias)-3))
-										<li class="list-item"><a class="filter-link" href="#">{{ $subcategoria->descricao ?? '' }}</a></li>
+										<li 
+										data-subcategoria_id="{{$subcategoria->id}}" 
+										class="list-item">
+											<a class="{{ !empty($subcategoriaActive['situacao']) ? 'filter-link active' : 'filter-link'}}" href="#">{{ $subcategoria->descricao ?? '' }}
+											</a>
+										</li>
 									@else
-										<li class="list-item default-hiden"><a class="filter-link" href="#">{{ $subcategoria->descricao ?? '' }}</a></li>
+										<li data-subcategoria_id="{{$subcategoria->id}}" class="{{ !empty($subcategoria->situacao) ? 'list-item default-hiden active' : 'list-item'}}"><a class="filter-link" href="#">{{ $subcategoria->descricao ?? '' }}</a></li>
 									@endif
 								@endforeach
-								{{-- <li class="list-item"><a class="filter-link " href="#">Laptop Batteries</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Printer & Ink</a></li>
-								<li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Sound & Speaker</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li> --}}
 								<li class="list-item"><a data-label='Ver menos<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Ver mais<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
