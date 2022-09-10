@@ -67,7 +67,6 @@ class ProdutoController extends Controller
         ->whereHas('produtos', function($query){
             return  $query->orderBy('visualizados', 'desc');
         })
-        ->inRandomOrder()
         ->limit(7)
         ->get();
 
@@ -83,8 +82,7 @@ class ProdutoController extends Controller
             'imagens',
             'subcategoria',
         ])
-        ->orderBy('visualizados', 'desc')
-        ->inRandomOrder();
+        ->orderBy('visualizados', 'desc');
 
         if(!empty($request->menor_preco) && !empty($request->maior_preco)){
             $produtos->where('valor', '>=' , $request->menor_preco)->where('valor', '<=' , $request->maior_preco);
@@ -102,9 +100,10 @@ class ProdutoController extends Controller
             });
         }
 
+        $subcategoriasActive = collect([]);
+
         if(!empty($request->subcategoriasSelecionadas)){
             $subcategoriasSelecionadas = explode(",", $request->subcategoriasSelecionadas);
-            $subcategoriasActive = collect([]);
             //essa condicao do foreach é somente para repassar o valor dos itens que foram selecionado no filtro
             foreach ($subcategoriasSelecionadas as $key => $subcategoriaSelecionada) {
                 $subcategoria = $subcategorias->where('id', $subcategoriaSelecionada)->first();

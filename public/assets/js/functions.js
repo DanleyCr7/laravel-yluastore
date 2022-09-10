@@ -29,6 +29,7 @@
 			this.categoriaLink();
 			this.subCategoriaLink();
 			this.selectSubcategoria();
+			this.pagelink();
     	},
     	onReady: function(){
     		this.mercado_innit_carousel();
@@ -57,6 +58,26 @@
 				});
 
 				postForm("/comprar", { menor_preco, maior_preco, subcategoriasSelecionadas });
+			});
+		},
+
+		pagelink: function(){
+			$(document).on('click', ".page-link", function(el){
+				el.preventDefault();
+				var page = $(this).text();
+
+				var maior_preco = $( "#slider-range" ).slider( "values", 1 );
+				var menor_preco = $( "#slider-range" ).slider( "values", 0 );
+				var subcategoriasSelecionadas=[];
+				$(".list-limited").children().each(function(index, item){
+					if(index < $(".list-limited").children().length - 1){
+						if($(this).find('a').hasClass('active')){
+							subcategoriasSelecionadas.push($(this).attr("data-subcategoria_id"));
+						}
+					}
+				});
+
+				postForm(`/comprar?` , { page, menor_preco, maior_preco, subcategoriasSelecionadas }, 'get',);
 			});
 		},
 
@@ -663,18 +684,18 @@
 	});
 
 	function postForm(path, params, method) {
-			method = method || 'post';
+			method = method || 'get';
 		
 			var form = document.createElement('form');
 			form.setAttribute('method', method);
 			form.setAttribute('action', path);
 		
-			var csrfVar = $('meta[name="csrf-token"]').attr('content');
-			var hiddenField = document.createElement('input');
-			hiddenField.setAttribute('type', 'hidden');
-			hiddenField.setAttribute('name', '_token');
-			hiddenField.setAttribute('value', csrfVar);
-			form.appendChild(hiddenField);
+			// var csrfVar = $('meta[name="csrf-token"]').attr('content');
+			// var hiddenField = document.createElement('input');
+			// hiddenField.setAttribute('type', 'hidden');
+			// hiddenField.setAttribute('name', '_token');
+			// hiddenField.setAttribute('value', csrfVar);
+			// form.appendChild(hiddenField);
 
 			for (var key in  params) {
 				if (params.hasOwnProperty(key)) {
@@ -688,7 +709,6 @@
 			}
 		
 			document.body.appendChild(form);
-			// console.log(form);
 			form.submit();
 	};
 

@@ -18,7 +18,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/detalhe/{id?}', [ProdutoController::class, 'produtoDetalhado'])->name('produtos.detalhe');
-Route::post('/comprar', [ProdutoController::class, 'comprar'])->name('comprar');
+Route::get('/comprar', [ProdutoController::class, 'comprar'])->name('comprar');
 Route::get('/carrinho', [ProdutoController::class, 'carrinho'])->name('produtos.carrinho');
 // Route::get('detalhe', 'produtoDetalhado', )->name('detalhe')
 

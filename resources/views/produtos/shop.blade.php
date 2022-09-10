@@ -120,7 +120,7 @@
 											</a>
 										</li>
 									@else
-										<li data-subcategoria_id="{{$subcategoria->id}}" class="{{ !empty($subcategoria->situacao) ? 'list-item default-hiden active' : 'list-item'}}"><a class="filter-link" href="#">{{ $subcategoria->descricao ?? '' }}</a></li>
+										<li data-subcategoria_id="{{$subcategoria->id}}" class="list-item"><a class="{{ !empty($subcategoriaActive['situacao']) ? 'filter-link active' : 'filter-link'}}" href="#">{{ $subcategoria->descricao ?? '' }}</a></li>
 									@endif
 								@endforeach
 								<li class="list-item"><a data-label='Ver menos<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Ver mais<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
